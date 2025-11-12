@@ -26,7 +26,7 @@ public class StadeRESTController {
 	}
 	
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public Stade getProduitById(@PathVariable("id") Long id) {
+	public Stade getStadeById(@PathVariable("id") Long id) {
 		return stadeService.getStade(id);
 	}
 	
@@ -37,7 +37,7 @@ public class StadeRESTController {
 	
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public Stade updateProduit(@RequestBody Stade stade){
+	public Stade updateStade(@RequestBody Stade stade){
 		return stadeService.updateStade(stade);
 	}
 
@@ -51,6 +51,10 @@ public class StadeRESTController {
 	@RequestMapping(value="/stadepay/{idPay}",method = RequestMethod.GET)
 	public List<Stade> getStadeByPayId(@PathVariable("idPay") Long idPay) {
 		return stadeService.findByPaysIdPay(idPay);
+	}
+	@RequestMapping(value="/stadeByName/{nom}",method = RequestMethod.GET)
+	public List<Stade> findByNomStadeContains(@PathVariable("nom") String nom) {
+	return stadeService.findByNomStadeContains(nom);
 	}
 
 }
