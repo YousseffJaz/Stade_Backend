@@ -22,7 +22,7 @@ public class PaysRESTController {
 	@Autowired
 	PaysRepository paysRepository;
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Pays> getAllCategories()
+	public List<Pays> getAllPays()
 	{
 	return paysRepository.findAll();
 	}

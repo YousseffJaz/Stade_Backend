@@ -3,6 +3,7 @@ package com.example.demo.restcontrollers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class StadeRESTController {
 	
 	@RequestMapping(value="/addstade",method = RequestMethod.POST)
 	//@PostMapping("/addprod")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Stade createStade(@RequestBody Stade stade) {
 		return stadeService.saveStade(stade);
 	}
@@ -54,9 +56,13 @@ public class StadeRESTController {
 	}
 	
 	@RequestMapping(value="/stadespay/{idPay}",method = RequestMethod.GET)
-	public List<Stade> getStadesByCatId(@PathVariable("idPay") Long idPay) {
+	public List<Stade> getStadesByPayId(@PathVariable("idPay") Long idPay) {
 		return stadeService.findByPaysIdPay(idPay);
 	 }
 
+	@RequestMapping(value="/stadesByName/{nom}", method = RequestMethod.GET)
+	public List<Stade> getStadesByName(@PathVariable("nom") String nom) {
+	    return stadeService.findByNomStade(nom);
+	}
 
 }
